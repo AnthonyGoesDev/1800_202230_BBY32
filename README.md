@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+*Hi my name is Eric. I'm excited about this project because lots of coding works.
 	
 ## Technologies
 Technologies used for this project:
