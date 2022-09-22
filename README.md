@@ -10,6 +10,7 @@ This browser based web application to ...
 *Hi my name is Gursidh. I'm excited about this project because it teaches me alot how to code in a team.
 * This is a text from Anthony!!!
 *This is new line from Eric.
+* hi my name is jack!
 	
 ## Technologies
 Technologies used for this project:
