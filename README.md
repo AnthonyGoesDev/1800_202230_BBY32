@@ -9,9 +9,10 @@ This browser based web application to ...
 *Hi my name is Eric. I'm excited about this project because lots of coding works.
 *Hi my name is Gursidh. I'm excited about this project because it teaches me alot how to code in a team.
 * This is a text from Anthony!!!
-* hi my name is jack!
+*This is new line from Eric.
+* Hi，my name is jack!!!
 	
-## Technologies
+    ## Technologies
 Technologies used for this project:
 * HTML, CSS
 * JavaScript
