@@ -1,0 +1,20 @@
+html, body {
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden
+}
+
+/*#searchBar{
+    margin: 30px;
+}
+#inputStr{
+    font-size: xx-large;
+}*/ /*for old searchbar*/
+
+#map{
+    height: 90%;
+    margin-top: 70px;
+    width: 100%;
+    position: fixed; /*must work with the background setting*/
+    background: none; /*important for map*/
+}
