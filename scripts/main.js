@@ -47,10 +47,10 @@
             coStr += (colength + " "); 
             console.log(coStr);
 
-            let logStr = " ";
+            // let logStr = " ";
 
             for(let j = 0; j<colength; j++){
-                logStr += (coordinates[j] + " ") //for debug
+                // logStr += (coordinates[j] + " ") //for debug
                 let x = coordinates[j][1];
                 let y = coordinates[j][0];
                 
@@ -78,6 +78,12 @@
 
     });
 
+//under working the pin on map
+    const urlParamas = new URLSearchParams(window.location.search);
+    const strSearchKey = urlParamas.get("coodinator");
+    if(strSearchKey){
+        console.log(strSearchKey);
+    }
 // document.getElementById("btnSubmit").addEventListener("click", searchFunction());
 //       function searchFunction() {
 //         let strSearchKey = document.getElementById("inputStr").value;
@@ -88,11 +94,14 @@
     
 //     }
 
-//pakage the search key
+//pakage the search key; async is important 
 async function search(){
     var  inputBox = document.getElementById("inputStr");
     var strSearchKey =inputBox.value;
-    window.open("./searchResult.html?key=" + strSearchKey); 
+    window.open("./searchResult.html?key=" + strSearchKey);  //open a new page content the search result
+    window.close(); //close the current page
 }
 
 // async function searchFunction() {} 
+
+//
