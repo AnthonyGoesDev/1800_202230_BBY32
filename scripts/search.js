@@ -25,13 +25,15 @@ function readTextFile(file, callback) {
 //initial road status
 let roadSatus = "";
 //access data from json file:
-readTextFile(LocalJson, function(text){
+readTextFile(LocalJson, function querySearchKey (text){
     const cases = JSON.parse(text);
 
     const maxlenth = cases.length;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //use <String>.includes() to evaluate if the rearch key was found
     let status = "";
+    // let x;
+    // let y;
     document.getElementById("roadSta").src = "./images/good_to_go.jpg";   
 
     for(let i=0; i<maxlenth; i++){
@@ -46,11 +48,21 @@ readTextFile(LocalJson, function(text){
         if(projectLocation.toString().includes(searchValue)){
             //get case info
             let projectName = cases[i].fields.project;
-            let projectDate = cases[i].fields.comp_date;            
+            let projectDate = cases[i].fields.comp_date;
+
+            //load coodinators for point on map
+            // x = coordinates[j][1];
+            // y = coordinates[j][0];                
+            // let t = y[0];
+            // if(!(t == null)){
+            //     x = coordinates[j][0][1];
+            //     y = coordinates[j][0][0];
+            // }
+
             document.getElementById("roadSta").src = "./images/road_close.jpg";
             //create multi records for multi matches
-            status += "<h2>Road is//will be closed.</h2><h3>Project Name:</h3>" 
-                + projectName + "<h3>Project Date:</h3>" + projectDate;    
+            status += "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>" 
+                + projectName + "<h5>Project Date:</h5>" + projectDate;    
         }
     }//end for loop
     //setup for empty search matches
@@ -59,8 +71,11 @@ readTextFile(LocalJson, function(text){
     }
     //refresh the page, if refresh in the loop, only the final one will show on.
     document.getElementById("statment").innerHTML = status;
-
+    // return ( x + "," + y);
 });
 
-
-//display the result
+//loadback to index with pin (working on)
+async function pointMap(){
+    window.open("./index.html?coodinator=" + searchValue);
+    window.close();
+}
