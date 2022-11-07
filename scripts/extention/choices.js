@@ -5847,7 +5847,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param  {HTMLElement} startEl    Element to start position from
 	 * @param  {String}      className  The class we will look through
 	 * @param  {Number}      direction  Positive next element, negative previous element
-	 * @return {[HTMLElement}           Found element
+	 * @return {[HTMLElement]}           Found element
 	 */
 	var getAdjacentEl = exports.getAdjacentEl = function getAdjacentEl(startEl, className) {
 	  var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
