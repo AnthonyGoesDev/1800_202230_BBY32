@@ -31,7 +31,7 @@ loadJSON(jSNpath, getData,'jsonStatus');
 function getData(cases)
   {  
     //for debug
-    console.log(cases.records);
+    // console.log(cases.records);
     
     const maxlenth = cases.length;
 
@@ -45,7 +45,7 @@ function getData(cases)
         let colength = coordinates.length;
         let coStr = " ";
         coStr += (colength + " ");
-        console.log(coStr);
+        // console.log(coStr);
 
         // let logStr = " ";
 
@@ -54,12 +54,12 @@ function getData(cases)
             let x = coordinates[j][1];
             let y = coordinates[j][0];
 
-            let t = y[0];
-            if (!(t == null)) {
+            let temp = y[0];
+            if (!(temp == null)) {
                 x = coordinates[j][0][1];
                 y = coordinates[j][0][0];
             }
-            //console.log(x);            
+            console.log(x);            
             //point markers on map
             var marker = L.marker([x, y]).addTo(map);
 
