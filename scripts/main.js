@@ -33,24 +33,19 @@ function getData(cases)
     //for debug
     // console.log(cases.records);
     
-    const maxlenth = cases.length;
+    const maxlenth = cases.records.length;
+   
 
     //displayLog.innerHTML = " ";
     for (let i = 0; i < maxlenth; i++) {
-        let projectName = cases[i].fields.project;
-        let projectDate = cases[i].fields.comp_date;
+        let projectName = cases.records[i].fields.project;
+        let projectDate = cases.records[i].fields.comp_date;
         //get coordinates
-        let coordinates = cases[i].fields.geom.coordinates;
+        let coordinates = cases.records[i].fields.geom.coordinates;
 
         let colength = coordinates.length;
-        let coStr = " ";
-        coStr += (colength + " ");
-        // console.log(coStr);
-
-        // let logStr = " ";
-
+        
         for (let j = 0; j < colength; j++) {
-            // logStr += (coordinates[j] + " ") //for debug
             let x = coordinates[j][1];
             let y = coordinates[j][0];
 
@@ -59,7 +54,7 @@ function getData(cases)
                 x = coordinates[j][0][1];
                 y = coordinates[j][0][0];
             }
-            console.log(x);            
+            // console.log(x);            
             //point markers on map
             var marker = L.marker([x, y]).addTo(map);
 

@@ -9,46 +9,50 @@ document.getElementById("statment").innerHTML = searchValue;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //retrive the data from json file
-const LocalJson = "./Data/road-ahead-current-road-closures.json";
+const jSNpath = "https://opendata.vancouver.ca/api/records/1.0/search/?dataset=road-ahead-current-road-closures&q=&format=json";
 //setup function to access json
-function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
+function loadJSON(path, success, error) {
+    let rawDataFile = new XMLHttpRequest();
+    rawDataFile.open('GET', path, true);
+    rawDataFile.onreadystatechange = function () {
+        if (rawDataFile.readyState === 4) {
+            if (rawDataFile.status === 200) {
+                success(JSON.parse(rawDataFile.responseText));
+            }
+            else {
+                error(rawDataFile.status);
+            }
         }
-    }
-    rawFile.send(null);
-} //end the function
-//initial road status
-let roadSatus = "";
-//access data from json file:
-readTextFile(LocalJson, function querySearchKey (text){
-    const cases = JSON.parse(text);
+    };
+    rawDataFile.send();
+}
 
-    const maxlenth = cases.length;
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//access data from json file:
+loadJSON(jSNpath, getData,'jsonStatus');
+
 //use <String>.includes() to evaluate if the rearch key was found
+function getData(cases)
+  {  
+    //for debug
+    // console.log(cases.records);
+    //initial road status
+    let roadSatus = "";
+    const maxlenth = cases.records.length;
     let status = "";
-    // let x;
-    // let y;
+    
     document.getElementById("roadSta").src = "./images/good_to_go.jpg";   
 
     for(let i=0; i<maxlenth; i++){
-        let projectLocation = cases[i].fields.location;
+        let projectLocation = cases.records[i].fields.location;
         //incase for empty reading
         if (!projectLocation){
             projectLocation = "Cannot match";
         }
 
-        //console.log(projectLocation); //for test usage
-
         if(projectLocation.toString().includes(searchValue)){
             //get case info
-            let projectName = cases[i].fields.project;
-            let projectDate = cases[i].fields.comp_date;
+            let projectName = cases.records[i].fields.project;
+            let projectDate = cases.records[i].fields.comp_date;
 
             //load coodinators for point on map
             // x = coordinates[j][1];
@@ -72,10 +76,10 @@ readTextFile(LocalJson, function querySearchKey (text){
     //refresh the page, if refresh in the loop, only the final one will show on.
     document.getElementById("statment").innerHTML = status;
     // return ( x + "," + y);
-});
+};
 
 //loadback to index with pin (working on)
 async function pointMap(){
-    window.open("./index.html?coodinator=" + searchValue);
+    window.open("./map.html?coodinator=" + searchValue);
     window.close();
 }
