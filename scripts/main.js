@@ -85,12 +85,18 @@ if (strSearchKey) {
 
 //pakage the search key; async is important 
 async function search() {
-    var inputBox = document.getElementById("inputStr");
-    var strSearchKey = inputBox.value;
+    let inputBox = document.getElementById("inputStr");
+    let strSearchKey = inputBox.value;
     //validation input
-    strSearchKey.trim();
-    window.open("./searchResult.html?key=" + strSearchKey);  //open a new page content the search result
+    let str = strSearchKey.trim();
+    let str2 = str.replace(/[^a-zA-Z0-9 ]/g, '')
+
+    if(str == ""){
+        console.log("get empty input");
+    }else{
+    window.open("./searchResult.html?key=" + str2);  //open a new page content the search result
     window.close(); //close the current page
+    }
 }
 
 // async function searchFunction() {}
