@@ -70,7 +70,7 @@ function getData(cases) {
 const urlParamas = new URLSearchParams(window.location.search);
 const strSearchKey = urlParamas.get("coodinator");
 var myIcon = L.icon({
-    iconUrl: './images/the_cone.jpg',
+    iconUrl: './images/the_cone.png',
     iconSize: [38, 45],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
