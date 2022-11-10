@@ -26,15 +26,14 @@ function loadJSON(path, success, error) {
     rawDataFile.send();
 }
 //get json data from jSNpath
-loadJSON(jSNpath, getData,'jsonStatus');
+loadJSON(jSNpath, getData, 'jsonStatus');
 
-function getData(cases)
-  {  
+function getData(cases) {
     //for debug
     // console.log(cases.records);
-    
+
     const maxlenth = cases.records.length;
-   
+
 
     //displayLog.innerHTML = " ";
     for (let i = 0; i < maxlenth; i++) {
@@ -44,7 +43,7 @@ function getData(cases)
         let coordinates = cases.records[i].fields.geom.coordinates;
 
         let colength = coordinates.length;
-        
+
         for (let j = 0; j < colength; j++) {
             let x = coordinates[j][1];
             let y = coordinates[j][0];
@@ -70,8 +69,25 @@ function getData(cases)
 //under working the pin on map
 const urlParamas = new URLSearchParams(window.location.search);
 const strSearchKey = urlParamas.get("coodinator");
+var myIcon = L.icon({
+    iconUrl: './images/the_cone.jpg',
+    iconSize: [38, 45],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    // shadowUrl: './images/the_cone.jpg',
+    shadowSize: [68, 95],
+    shadowAnchor: [22, 94]
+});
+
 if (strSearchKey) {
     console.log(strSearchKey);
+    let X = localStorage.getItem("X");
+    let Y = localStorage.getItem("Y");
+    if (X) {
+        var point = L.marker([parseFloat(X),parseFloat(Y)], { icon: myIcon }).addTo(map);
+        // L.setView([parseFloat(X),parseFloat(Y)], 17);
+        console.log("already point out");
+    }
 }
 // document.getElementById("btnSubmit").addEventListener("click", searchFunction());
 //       function searchFunction() {
@@ -91,11 +107,11 @@ async function search() {
     let str = strSearchKey.trim();
     let str2 = str.replace(/[^a-zA-Z0-9]/g, '')
 
-    if(str == ""){
+    if (str == "") {
         console.log("get empty input");
-    }else{
-    window.open("./searchResult.html?key=" + str2);  //open a new page content the search result
-    window.close(); //close the current page
+    } else {
+        window.open("./searchResult.html?key=" + str2);  //open a new page content the search result
+        window.close(); //close the current page
     }
 }
 
