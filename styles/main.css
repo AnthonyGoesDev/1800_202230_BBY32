@@ -1058,3 +1058,18 @@ html, body {
   }
   
 /* END OF SEARCH BAR by MALABAJO */
+
+/* START of smileycard design */
+#smileycard {
+/* margin-top:80px */
+margin: 90px auto;
+width: 45%;
+}
+
+#roadSta {
+  width: 96%;
+  margin: 1.5% auto;
+} 
+
+/* END of smileycard design */
+
