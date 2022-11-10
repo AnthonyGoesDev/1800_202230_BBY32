@@ -87,6 +87,8 @@ if (strSearchKey) {
 async function search() {
     var inputBox = document.getElementById("inputStr");
     var strSearchKey = inputBox.value;
+    //validation input
+    strSearchKey.trim();
     window.open("./searchResult.html?key=" + strSearchKey);  //open a new page content the search result
     window.close(); //close the current page
 }

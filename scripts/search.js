@@ -72,6 +72,7 @@ function getData(cases)
     //setup for empty search matches
     if (!status){ 
         status = "<h2>Have a good trip, the road is okay.</h2>"
+        document.getElementById("point").disable = true;
     }
     //refresh the page, if refresh in the loop, only the final one will show on.
     document.getElementById("statment").innerHTML = status;
