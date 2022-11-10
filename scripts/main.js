@@ -89,7 +89,7 @@ async function search() {
     let strSearchKey = inputBox.value;
     //validation input
     let str = strSearchKey.trim();
-    let str2 = str.replace(/[^a-zA-Z0-9 ]/g, '')
+    let str2 = str.replace(/[^a-zA-Z0-9]/g, '')
 
     if(str == ""){
         console.log("get empty input");
