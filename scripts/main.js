@@ -43,6 +43,11 @@ function getData(cases) {
         let coordinates = cases.records[i].fields.geom.coordinates;
 
         let colength = coordinates.length;
+        var blockIcon = L.icon({
+            iconUrl: './images/block.png',
+            iconSize: [32, 45],
+            popupAnchor: [-3, -36],
+        });
 
         for (let j = 0; j < colength; j++) {
             let x = coordinates[j][1];
@@ -55,7 +60,7 @@ function getData(cases) {
             }
             // console.log(x);            
             //point markers on map
-            var marker = L.marker([x, y]).addTo(map);
+            var marker = L.marker([x, y],{icon:blockIcon}).addTo(map);
 
             //add notes on marks
             if (!projectName) {
@@ -71,12 +76,9 @@ const urlParamas = new URLSearchParams(window.location.search);
 const strSearchKey = urlParamas.get("coodinator");
 var myIcon = L.icon({
     iconUrl: './images/the_cone.png',
-    iconSize: [38, 45],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
-    // shadowUrl: './images/the_cone.jpg',
-    shadowSize: [68, 95],
-    shadowAnchor: [22, 94]
+    iconAnchor: [5, 5],
+    iconSize: [38, 45],    
+    popupAnchor: [-3, -76],    
 });
 
 if (strSearchKey) {
@@ -84,9 +86,9 @@ if (strSearchKey) {
     let X = localStorage.getItem("X");
     let Y = localStorage.getItem("Y");
     if (X) {
-        var point = L.marker([parseFloat(X),parseFloat(Y)], { icon: myIcon }).addTo(map);
+        var point = L.marker([parseFloat(X), parseFloat(Y)], { icon: myIcon }).addTo(map);
         // L.setView([parseFloat(X),parseFloat(Y)], 17);
-        console.log("already point out");
+        // console.log("already point out");
     }
 }
 // document.getElementById("btnSubmit").addEventListener("click", searchFunction());
@@ -105,7 +107,7 @@ async function search() {
     let strSearchKey = inputBox.value;
     //validation input
     let str = strSearchKey.trim();
-    let str2 = str.replace(/[^a-zA-Z0-9]/g, '')
+    let str2 = str.replace(/[^a-zA-Z0-9 ]/g, '')
 
     if (str == "") {
         console.log("get empty input");

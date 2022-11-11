@@ -38,7 +38,7 @@ function getData(cases) {
     //for debug
     // console.log(cases.records);
     //initial road status
-    let roadSatus = "";
+    let roadSatus = false;
     const maxlenth = cases.records.length;
     var status = "";
 
@@ -60,7 +60,7 @@ function getData(cases) {
             let coordinates = cases.records[i].fields.geom.coordinates;
 
             let colength = coordinates.length;
-
+            roadSatus = true;
             for (let j = 0; j < colength; j++) {
                 let x = coordinates[j][1];
                 let y = coordinates[j][0];
@@ -76,14 +76,16 @@ function getData(cases) {
 
                 document.getElementById("roadSta").src = "./images/road_close.jpg";
                 //create multi records for multi matches
-                status += "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>"
+                status = "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>"
                     + projectName + "<h5>Project Date:</h5>" + projectDate;
-            }
-        }//end for loop
+            }//end for loop
+        }
         //setup for empty search matches
-        if (!status) {
+        if (!roadSatus) {
             status = "<h2>Have a good trip, the road is okay.</h2>"
-            document.getElementById("point").disable = true;
+            document.getElementById("point").style.display="none";
+        }else{
+            document.getElementById("point").style.display="inline";
         }
         //refresh the page, if refresh in the loop, only the final one will show on.
         document.getElementById("statment").innerHTML = status;
@@ -94,6 +96,6 @@ function getData(cases) {
     async function pointMap() {
         localStorage.setItem("X", pointCoX);
         localStorage.setItem("Y", pointCoY);
-        window.open("./map.html?coodinator=" + searchValue);
+        window.open("./map.html?coodinator=" + "LS");
         window.close();
     }
