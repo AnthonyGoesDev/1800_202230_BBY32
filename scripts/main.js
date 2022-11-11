@@ -29,11 +29,14 @@ function loadJSON(path, success, error) {
 loadJSON(jSNpath, getData, 'jsonStatus');
 
 function getData(cases) {
-    //for debug
-    // console.log(cases.records);
-
+    
     const maxlenth = cases.records.length;
-
+    //define new icon on map
+    var blockIcon = L.icon({
+        iconUrl: './images/block.png',
+        iconSize: [32, 45],
+        popupAnchor: [-3, -36],
+    });
 
     //displayLog.innerHTML = " ";
     for (let i = 0; i < maxlenth; i++) {
@@ -43,11 +46,6 @@ function getData(cases) {
         let coordinates = cases.records[i].fields.geom.coordinates;
 
         let colength = coordinates.length;
-        var blockIcon = L.icon({
-            iconUrl: './images/block.png',
-            iconSize: [32, 45],
-            popupAnchor: [-3, -36],
-        });
 
         for (let j = 0; j < colength; j++) {
             let x = coordinates[j][1];
@@ -60,7 +58,7 @@ function getData(cases) {
             }
             // console.log(x);            
             //point markers on map
-            var marker = L.marker([x, y],{icon:blockIcon}).addTo(map);
+            var marker = L.marker([x, y], { icon: blockIcon }).addTo(map);
 
             //add notes on marks
             if (!projectName) {
@@ -77,8 +75,8 @@ const strSearchKey = urlParamas.get("coodinator");
 var myIcon = L.icon({
     iconUrl: './images/the_cone.png',
     iconAnchor: [5, 5],
-    iconSize: [38, 45],    
-    popupAnchor: [-3, -76],    
+    iconSize: [38, 45],
+    popupAnchor: [-3, -76],
 });
 
 if (strSearchKey) {
@@ -87,6 +85,7 @@ if (strSearchKey) {
     let Y = localStorage.getItem("Y");
     if (X) {
         var point = L.marker([parseFloat(X), parseFloat(Y)], { icon: myIcon }).addTo(map);
+        localStorage.clear();
         // L.setView([parseFloat(X),parseFloat(Y)], 17);
         // console.log("already point out");
     }
