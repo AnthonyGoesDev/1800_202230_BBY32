@@ -30,6 +30,14 @@
     <!-- Other libraries go here -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
+
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/search.css">
 </head>
@@ -63,7 +71,7 @@
               <div class="card-body">
                   <div id="statment"></div>
                 <a onclick="pointMap()" class="btn btn-success" id="point">Show on Map</a>
-                <a onclick="" class="btn btn-primary" id="subscribe">Subscribe</a>
+                <a onclick="subscribe()" class="btn btn-primary" id="subscribe">Subscribe</a>
               </div>
           </div>
         </div>
@@ -74,6 +82,7 @@
   </div>
 
     <script type="text/javascript" src="./scripts/search.js"></script>
+    <script type="text/javascript" src="./scripts/firebaseAPI_team32.js"></script>
 
 </body>
 </html>
