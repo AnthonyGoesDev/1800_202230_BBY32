@@ -2,7 +2,7 @@
 
 //unpack the search key
 const urlParamas = new URLSearchParams(window.location.search);
-const searchValue = urlParamas.get("key");
+var searchValue = urlParamas.get("key");
 
 var pointCoX;
 var pointCoY;
@@ -52,6 +52,7 @@ function getData(cases) {
         }
 
         if (projectLocation.toString().includes(searchValue)) {
+            
             //get case info
             let projectName = cases.records[i].fields.project;
             let projectDate = cases.records[i].fields.comp_date;
@@ -72,30 +73,59 @@ function getData(cases) {
                 }
 
                 pointCoX = x;
-                pointCoY = y;                
+                pointCoY = y;
 
                 document.getElementById("roadSta").src = "./images/road_close.jpg";
                 //create multi records for multi matches
                 status = "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>"
                     + projectName + "<h5>Project Date:</h5>" + projectDate;
+                searchValue = projectLocation;
             }//end for loop
         }
         //setup for empty search matches
         if (!roadSatus) {
             status = "<h2>Have a good trip, the road is okay.</h2>"
-            document.getElementById("point").style.display="none";
-        }else{
-            document.getElementById("point").style.display="inline";
+            document.getElementById("point").style.display = "none";
+        } else {
+            document.getElementById("point").style.display = "inline";
         }
         //refresh the page, if refresh in the loop, only the final one will show on.
         document.getElementById("statment").innerHTML = status;
         // return ( x + "," + y);
     };
 }
-    //loadback to index with pin (working on)
-    async function pointMap() {
-        localStorage.setItem("X", pointCoX);
-        localStorage.setItem("Y", pointCoY);
-        window.open("./map.html?coodinator=" + "LS");
-        window.close();
-    }
+//loadback to index with pin (working on)
+async function pointMap() {
+    localStorage.setItem("X", pointCoX);
+    localStorage.setItem("Y", pointCoY);
+    window.open("./map.html?coodinator=" + "LS");
+    window.close();
+}
+
+//SUBSCRIBE FEATURES FROM HERE
+function subscribe() {
+    let inputData = searchValue;
+    console.log(inputData);
+    // firebase.auth().onAuthStateChanged(user => {
+        if (true) {
+            var currentUser = db.collection("users").doc("mPCvpx1UM0MLDb0Txk0fdy9zsrG3")
+            var userID = "mPCvpx1UM0MLDb0Txk0fdy9zsrG3";
+            //get the document for current user.
+            currentUser.get()
+                .then(userDoc => {
+                    var userEmail = userDoc.data().email;
+                    db.collection("Subscribe").add({
+                        userID: userID,
+                        sub: inputData,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    }).then(() => {
+                        window.alert("Subscribe successful!"); //new line added
+                    })
+                })
+
+        } else {
+            // No user is signed in.
+        }
+    // });
+
+}
