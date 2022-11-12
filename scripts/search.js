@@ -113,7 +113,7 @@ function subscribe() {
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
-                    var userEmail = userDoc.data().email;
+                    // var userEmail = userDoc.data().email;
                     db.collection("Subscribe").add({
                         userID: userID,
                         sub: inputData,
