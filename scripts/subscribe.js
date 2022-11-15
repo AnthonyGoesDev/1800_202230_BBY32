@@ -24,13 +24,14 @@ function read_display_Subscribe() {
         if (user) {
             userID = user.uid;
             //for debug
-            console.log(userID); 
+            console.log(userID);
         } else {
             window.alert("Cannot get user ID");
             console.log("disconnect with user ID");
         }
     });
-    var strUID = String(userID);
+    var strUID = "" + userID;
+    console.log(strUID);
     //================================================================
     // prebuilt.js:184 Uncaught FirebaseError: Function Query.where() called with invalid data. Unsupported field value: undefined
     // at new Br (prebuilt.js:184:9)
@@ -50,7 +51,7 @@ function read_display_Subscribe() {
     //get into the right collection
     var collectionSubscribe = db.collection("Subscribe");
     var cardStr = "";
-    var query = collectionSubscribe.where("userID", "==", strUID)
+    var query = collectionSubscribe.where("userID", "==", testUID)
     query.get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -86,17 +87,18 @@ function read_display_Subscribe() {
                             status += "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>"
                                 + projectName + "<h5>Project Date:</h5>" + projectDate;
                         }
-                        //setup for empty search matches
-                        if (!roadSatus) {
-                            status = "<h2>Have a good trip, the road is okay.</h2>"
-                            // document.getElementById("point").style.display = "none";
-                        } else {
-                            // document.getElementById("point").style.display = "inline";
-                        }
-                        //refresh the page, if refresh in the loop, only the final one will show on.
-                        document.getElementById("statment").innerHTML += status;
-                        // return ( x + "," + y);
-                    };
+                    }
+                    //setup for empty search matches
+                    if (!roadSatus) {
+                        status = "<h2>Have a good trip, the road is okay.</h2>"
+                        // document.getElementById("point").style.display = "none";
+                    } else {
+                        // document.getElementById("point").style.display = "inline";
+                    }
+                    //refresh the page, if refresh in the loop, only the final one will show on.
+                    document.getElementById("statment").innerHTML += status;
+                    // return ( x + "," + y);
+
                 }
 
 
