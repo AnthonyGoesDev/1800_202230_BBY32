@@ -106,10 +106,11 @@ async function pointMap() {
 function subscribe() {
     let inputData = searchValue;
     console.log(inputData);
-    // firebase.auth().onAuthStateChanged(user => {
-        if (true) {
-            var currentUser = db.collection("users").doc("mPCvpx1UM0MLDb0Txk0fdy9zsrG3")
-            var userID = "mPCvpx1UM0MLDb0Txk0fdy9zsrG3";
+    firebase.auth().onAuthStateChanged(function(user)  {if (user)
+         {
+            var currentUser = db.collection("users").doc(user.uid);
+            var userID = user.uid;
+            console.log(userID);
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
@@ -122,10 +123,9 @@ function subscribe() {
                         window.alert("Subscribe successful!"); //new line added
                     })
                 })
-
         } else {
-            // No user is signed in.
+            window.alert("Cannot find user!");
+            console.log("lost connection with user data");
         }
-    // });
-
+    });
 }

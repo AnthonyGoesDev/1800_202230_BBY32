@@ -1,5 +1,3 @@
-const userID = "mPCvpx1UM0MLDb0Txk0fdy9zsrG3";
-
 //retrive the data from json file
 const jSNpath = "https://opendata.vancouver.ca/api/records/1.0/search/?dataset=road-ahead-current-road-closures&q=&format=json";
 //setup function to access json
@@ -20,10 +18,39 @@ function loadJSON(path, success, error) {
 }
 
 function read_display_Subscribe() {
+    var userID;
+    //get user ID
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            userID = user.uid;
+            //for debug
+            console.log(userID); 
+        } else {
+            window.alert("Cannot get user ID");
+            console.log("disconnect with user ID");
+        }
+    });
+    var strUID = String(userID);
+    //================================================================
+    // prebuilt.js:184 Uncaught FirebaseError: Function Query.where() called with invalid data. Unsupported field value: undefined
+    // at new Br (prebuilt.js:184:9)
+    // at Ty (prebuilt.js:16140:16)
+    // at zp.Lc (prebuilt.js:15743:16)
+    // at prebuilt.js:16057:17
+    // at yy (prebuilt.js:16015:12)
+    // at py (prebuilt.js:15942:12)
+    // at prebuilt.js:16559:17
+    // at rg._apply (prebuilt.js:16544:40)
+    // at jy (prebuilt.js:16535:30)
+    // at sm.where (prebuilt.js:17814:43)
+    //================================================================
+    let testUID = "lAkydfvxLrMyV2aJG1fJYHNOdlv2";
+    //================================================================
+
     //get into the right collection
     var collectionSubscribe = db.collection("Subscribe");
     var cardStr = "";
-    var query = collectionSubscribe.where("userID", "==", userID)
+    var query = collectionSubscribe.where("userID", "==", strUID)
     query.get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
