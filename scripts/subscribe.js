@@ -1,5 +1,6 @@
 //retrive the data from json file
 const jSNpath = "https://opendata.vancouver.ca/api/records/1.0/search/?dataset=road-ahead-current-road-closures&q=&format=json";
+
 //setup function to access json
 function loadJSON(path, success, error) {
     let rawDataFile = new XMLHttpRequest();
@@ -18,96 +19,72 @@ function loadJSON(path, success, error) {
 }
 
 function read_display_Subscribe() {
-    var userID;
     //get user ID
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            userID = user.uid;
-            //for debug
-            console.log(userID);
+            const userID = user.uid;
         } else {
             window.alert("Cannot get user ID");
             console.log("disconnect with user ID");
         }
-    });
-    var strUID = "" + userID;
-    console.log(strUID);
-    //================================================================
-    // prebuilt.js:184 Uncaught FirebaseError: Function Query.where() called with invalid data. Unsupported field value: undefined
-    // at new Br (prebuilt.js:184:9)
-    // at Ty (prebuilt.js:16140:16)
-    // at zp.Lc (prebuilt.js:15743:16)
-    // at prebuilt.js:16057:17
-    // at yy (prebuilt.js:16015:12)
-    // at py (prebuilt.js:15942:12)
-    // at prebuilt.js:16559:17
-    // at rg._apply (prebuilt.js:16544:40)
-    // at jy (prebuilt.js:16535:30)
-    // at sm.where (prebuilt.js:17814:43)
-    //================================================================
-    let testUID = "lAkydfvxLrMyV2aJG1fJYHNOdlv2";
-    //================================================================
+        //get into the right collection
+        var cardStr = "";
+        db.collection("Subscribe")
+            .where("userID", "==", user.uid)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
 
-    //get into the right collection
-    var collectionSubscribe = db.collection("Subscribe");
-    var cardStr = "";
-    var query = collectionSubscribe.where("userID", "==", testUID)
-    query.get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data().sub);
-                var queryData = doc.data().sub;
-                cardStr += queryData + "<br>";
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id, " => ", doc.data().sub);
+                    var queryData = doc.data().sub;
+                    cardStr += queryData + "<br>";
 
-                //access data from json file:
-                loadJSON(jSNpath, getData, 'jsonStatus');
-
-                //use <String>.includes() to evaluate if the rearch key was found
-                function getData(cases) {
-                    let roadSatus = false;
-                    const maxlenth = cases.records.length;
+                    //access data from json file:
+                    loadJSON(jSNpath, getData, 'jsonStatus');
                     var status = "";
+                    //use <String>.includes() to evaluate if the rearch key was found
+                    function getData(cases) {
+                        let roadSatus = false;
+                        const maxlenth = cases.records.length;
 
-                    // document.getElementById("roadSta").src = "./images/good_to_go.jpg";
+                        for (let i = 0; i < maxlenth; i++) {
+                            let projectLocation = cases.records[i].fields.location;
+                            //incase for empty reading
+                            if (!projectLocation) {
+                                projectLocation = "Cannot match";
+                            }
 
-                    for (let i = 0; i < maxlenth; i++) {
-                        let projectLocation = cases.records[i].fields.location;
-                        //incase for empty reading
-                        if (!projectLocation) {
-                            projectLocation = "Cannot match";
+                            if (projectLocation.toString().includes(queryData)) {
+
+                                //get case info
+                                let projectName = cases.records[i].fields.project;
+                                let projectDate = cases.records[i].fields.comp_date;
+                                roadSatus = true;
+                                status += "<h3>Road is/will be closed.</h3><br>"
+                                            +"<h5>Project Name:</h5>"
+                                    + projectName + "<h5>Project Date:</h5>" + projectDate;
+                            }
                         }
-
-                        if (projectLocation.toString().includes(queryData)) {
-
-                            //get case info
-                            let projectName = cases.records[i].fields.project;
-                            let projectDate = cases.records[i].fields.comp_date;
-                            roadSatus = true;
-                            status += "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>"
-                                + projectName + "<h5>Project Date:</h5>" + projectDate;
+                        //setup for empty search matches
+                        if (!roadSatus) {
+                            status = "<h2>Have a good trip, the road is okay.</h2>"
                         }
-                    }
-                    //setup for empty search matches
-                    if (!roadSatus) {
-                        status = "<h2>Have a good trip, the road is okay.</h2>"
-                        // document.getElementById("point").style.display = "none";
-                    } else {
-                        // document.getElementById("point").style.display = "inline";
-                    }
-                    //refresh the page, if refresh in the loop, only the final one will show on.
-                    document.getElementById("statment").innerHTML += status;
-                    // return ( x + "," + y);
-
-                }
+                        // const cardHTML = "<div class=\"card text-center\" id=\"cards\"><img src=\"...\" class=\"card-img-top\" alt=\"road status\" id=\"roadSta\"><div class=\"card-body\"><div id=\"statment\"></div></div></div>"
+                        // document.getElementById("").innerHTML = cardHTML;
+                        document.getElementById("subscribe-go-here").innerHTML = status;
+                        // var card = document.getElementById("cards");
+                        // card.innerHTML = status;
+                    }//end function
 
 
+                });
+
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
             });
-            document.getElementById("subscribe-go-here").innerHTML = cardStr;
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
+    });
 }
 read_display_Subscribe();
 
