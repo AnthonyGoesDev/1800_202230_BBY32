@@ -16,7 +16,7 @@ function loadJSON(path, success, error) {
         }
     };
     rawDataFile.send();
-}
+}   
 
 function read_display_Subscribe() {
     //get user ID
@@ -87,6 +87,37 @@ function read_display_Subscribe() {
     });
 }
 read_display_Subscribe();
+
+function Delete() {
+    //get user ID
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            const userID = user.uid;
+        } else {
+            window.alert("Cannot get user ID");
+            console.log("disconnect with user ID");
+        }
+    //     //get into the right collection
+    //     var cardStr = "";
+        db.collection("Subscribe")
+            .where("userID", "==", user.uid)
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach((doc) => {
+                    doc.ref.delete().then(() => {
+                        console.log("Document successfully deleted!");
+                        window.alert("Deleted successful!");
+                    }).catch(function(error) {
+                        console.error("Error removing document: ", error);
+                    });
+                });
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+         });
+     }
+    // Delete();
 
 
 
