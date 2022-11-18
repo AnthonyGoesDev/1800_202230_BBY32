@@ -52,7 +52,7 @@ function getData(cases) {
         }
 
         if (projectLocation.toString().includes(searchValue)) {
-            
+
             //get case info
             let projectName = cases.records[i].fields.project;
             let projectDate = cases.records[i].fields.comp_date;
@@ -106,26 +106,47 @@ async function pointMap() {
 function subscribe() {
     let inputData = searchValue;
     console.log(inputData);
-    firebase.auth().onAuthStateChanged(function(user)  {if (user)
-         {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
             var currentUser = db.collection("users").doc(user.uid);
             var userID = user.uid;
-            console.log(userID);
+            // console.log(userID);
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
-                    // var userEmail = userDoc.data().email;
-                    db.collection("Subscribe").add({
-                        userID: userID,
-                        sub: inputData,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    }).then(() => {
-                        window.alert("Subscribe successful!"); //new line added
-                    })
-                })
+                    let ifExist = false;
+                    //check if the subscribe exist
+                    db.collection("Subscribe")
+                        .where("userID", "==", userID)
+                        .get()
+                        .then((querySnapshot) => {
+                            // console.log(querySnapshot);
+                            querySnapshot.forEach((doc) => {
+                                // console.log(doc.data().sub);
+                                if (doc.data().sub.valueOf() == inputData.valueOf()) {
+                                    ifExist = true;
+                                }
+                            })
+                            // console.log(ifExist);
+                            //write info into the firestore DB
+                            if (!ifExist) {
+                                db.collection("Subscribe").add({
+                                    userID: userID,
+                                    sub: inputData,
+                                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                                }).then(() => {
+                                    window.alert("Subscribe successful!"); //new line added
+                                })
+                            }//end if
+                            else {
+                                window.alert("Subscribe already exist!");
+                            }
+                        });
+                });
         } else {
             window.alert("Cannot find user!");
             console.log("lost connection with user data");
         }
+
     });
 }
