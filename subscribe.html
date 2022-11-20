@@ -34,15 +34,15 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
-     <!-------------------------------------------------------->
-    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
-    <!-------------------------------------------------------->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <!-------------------------------------------------------->
+  <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+  <!-------------------------------------------------------->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
   <!-- Other libraries go here -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -64,40 +64,30 @@
   </div>
   <!-- END of NAV BAR -->
 
-  <!--<div hidden id="pageID">Sub</div> //one way to try to different the index.html-->
-  <!-- <div>
-        <img id="roadSta" src="" alt="road status">
-    </div>
-    <div id="statment"></div> -->
-
+  <div class="container" style="margin-top: 20px;">
+    <!-- Here is container for cards  -->
     <div class="container">
-      <h1>Here are your Subscriptions</h1>
-      <!-- Here is container for cards  -->
-      <div class="container">
-          <div id="subscribe-go-here" class="row row-cols-auto">
-            <img id="roadSta">
-            
-          </div>
-          <a onclick="Delete()" class="btn btn-primary" id="delete">Delete</a>
-          </div>
+      <div id="CardGroup" class="row row-cols-auto">
       </div>
-</div>
-<div id="statment"></div>
-<!-- Templates for general use, not displayed -->
-<!-- <template id="subscribeTemplate">
-  <div class="card py-2 mx-2" style="width: 18rem;">
-      <img class="card-image card-img-top" src=" ..." alt="...">
-      <div class="card-body">
-          <h5 class="card-title">Subscription</h5>
-          <a href="review.html" id="write-review" class="link-primary">write a review</a>
-          <br>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-              card's content.</p>
-          <a onclick="pointMap()" class="btn btn-success" id="read-more">Show on Map</a>
-      </div>
+    </div>
   </div>
-</template> -->
- 
+
+  <template id="CardTemplate">
+    <div class="card" style="margin-left: 10px; margin-right: 10px;">
+      <img class="card-img-top" src="">
+      <div class="card-body">
+        <h5 class="title">placeholder</h5>
+        <p class="name">placeholder</p>
+        <p class="Date">placeholder</p>
+        <!-- <p class="location">placeholder</p>-->
+        <br>
+      </div>
+        <a onclick="Delete()" class="btn btn-primary" id="delete">Delete</a>
+      </div>
+    </div>
+    </div>
+  </template>
+
   <script src="./scripts/firebaseAPI_team32.js"></script>
   <script src="./scripts/subscribe.js"></script>
 </body>

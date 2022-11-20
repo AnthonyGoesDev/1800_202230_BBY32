@@ -42,11 +42,15 @@ function read_display_Subscribe() {
 
                     //access data from json file:
                     loadJSON(jSNpath, getData, 'jsonStatus');
-                    var status = "";
+                    var status;
                     //use <String>.includes() to evaluate if the rearch key was found
                     function getData(cases) {
                         let roadSatus = false;
                         const maxlenth = cases.records.length;
+                        let roadTemplete = document.getElementById("CardTemplate");
+                        let roadCardGroup =document.getElementById("CardGroup");
+                        let projectName;
+                        let projectDate;
 
                         for (let i = 0; i < maxlenth; i++) {
                             let projectLocation = cases.records[i].fields.location;
@@ -58,27 +62,29 @@ function read_display_Subscribe() {
                             if (projectLocation.toString().includes(queryData)) {
 
                                 //get case info
-                                let projectName = cases.records[i].fields.project;
-                                let projectDate = cases.records[i].fields.comp_date;
+                                projectName = cases.records[i].fields.project;
+                                projectDate = cases.records[i].fields.comp_date;
                                 roadSatus = true;
-                                status += "<h3>Road is/will be closed.</h3><br>"
-                                            +"<h5>Project Name:</h5>"
-                                    + projectName + "<h5>Project Date:</h5>" + projectDate;
+                                status = "Road is/will be closed";
                             }
-                        }
+                        }// end inner for loop
                         //setup for empty search matches
                         if (!roadSatus) {
-                            status = "<h2>Have a good trip, the road is okay.</h2>"
+                            status = "Have a good trip, the road is okay."
                         }
-                        // const cardHTML = "<div class=\"card text-center\" id=\"cards\"><img src=\"...\" class=\"card-img-top\" alt=\"road status\" id=\"roadSta\"><div class=\"card-body\"><div id=\"statment\"></div></div></div>"
-                        // document.getElementById("").innerHTML = cardHTML;
-                        document.getElementById("subscribe-go-here").innerHTML = status;
-                        // var card = document.getElementById("cards");
-                        // card.innerHTML = status;
+                        
+                        //display a result
+                        let resultCard = roadTemplete.content.cloneNode(true);
+                        resultCard.querySelector('.title').innerHTML = status;
+                        resultCard.querySelector('.name').innerHTML = projectName;
+                        resultCard.querySelector('.Date').innerHTML = projectDate;
+                        roadCardGroup.appendChild(resultCard);
+                        
                     }//end function
 
 
-                });
+                 } //end the outter for loop
+                );
 
             })
             .catch((error) => {
