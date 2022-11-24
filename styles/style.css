@@ -1,0 +1,86 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body{
+    background-image:url("../images/Background_blur.jpg");
+    background-position:center ;
+}
+
+#login{
+    margin-top: 50px;
+}
+
+/*#searchBar{
+    margin: 30px;
+}
+#inputStr{
+    font-size: xx-large;
+}*/
+/*for old searchbar*/
+
+/* nav bar and footer CSS */
+.nav {
+  text-align: center;
+  display: grid;
+  background-color: rgb(10, 145, 84);
+
+  /* width: 80%; */
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+
+}
+
+
+.nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 12px;
+  overflow: hidden;
+  background-color: rgb(10, 145, 84);
+}
+
+.nav li {
+  display: inline;
+}
+
+.nav li a {
+  text-decoration: none;
+  padding: 15px 15px;
+  text-align: center;
+  color: white;
+}
+
+.nav a:hover:not(.active) {
+  background-color: rgb(12, 98, 59);
+}
+
+.nav .active {
+  background-color: #16a7eb;
+}
+
+/* MAINNAV Google Icons */
+.material-symbols-outlined {
+  display: none;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+/* START of smileycard design */
+#smileycard {
+  /* margin-top:80px */
+  margin: 90px auto;
+  width: 45%;
+}
+
+#roadSta {
+  width: 96%;
+  margin: 1.5% auto;
+}
