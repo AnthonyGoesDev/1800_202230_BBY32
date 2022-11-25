@@ -2,12 +2,15 @@ html,
 body {
   margin: 0;
   height: 100%;
-  overflow: scroll
 }
 
 body{
-  background-image:url("../images/Background_blur.jpg");
-  background-position:center ;
+    background-image:url("../images/Background_blur.jpg");
+    background-position:center ;
+}
+
+#login{
+    margin-top: 50px;
 }
 
 /*#searchBar{
@@ -81,5 +84,3 @@ body{
   width: 96%;
   margin: 1.5% auto;
 }
-
-/* END of smileycard design */

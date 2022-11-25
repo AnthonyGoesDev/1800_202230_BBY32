@@ -72,6 +72,9 @@ function read_display_Subscribe() {
                         //setup for empty search matches
                         if (!roadSatus) {
                             status = "Have a good trip, the road is okay."
+                            projectName = queryData;
+                            let today = new Date().toLocaleDateString();
+                            projectDate = today;
                         }
                         
                         //display a result
