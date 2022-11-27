@@ -129,4 +129,7 @@ function Delete() {
      }
     // Delete();
     
-    //  window.alert("Notification has been send!");
+    function sendNoti(){
+        window.alert("Notification has been send!");
+    }
+    

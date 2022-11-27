@@ -32,6 +32,19 @@ body{
 
 }
 
+#Notifi{
+  border: 1px solid;
+  padding: 2px;
+}
+
+#Notifi legend{
+  font-weight: bolder;
+}
+
+input{
+  font-size: 1.5em;
+  margin: 5px;
+}
 
 .nav ul {
   list-style-type: none;
