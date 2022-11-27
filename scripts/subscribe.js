@@ -128,3 +128,5 @@ function Delete() {
          });
      }
     // Delete();
+    
+     window.alert("Notification has been send!");
