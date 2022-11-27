@@ -18,7 +18,9 @@ img[src="./images/RoadAid.gif"] {
     margin: 0 auto;
     padding: 15px 30px;
     border-radius: 6px;
+    opacity: 84%;
   }
+
 #map{
     height: 100%;
     /* margin-top: 70px; */
