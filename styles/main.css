@@ -4,13 +4,21 @@ html, body {
     overflow: hidden
 }
 
-/*#searchBar{
-    margin: 30px;
-}
-#inputStr{
-    font-size: xx-large;
-}*/ /*for old searchbar*/
+/* logo in the about page */
+img[src="./images/RoadAid_Logo.png"] {
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 9%;
+  display: block;
+  }
 
+  .whitebox {
+    background-color: white;
+    width: 600px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    border-radius: 6px;
+  }
 #map{
     height: 100%;
     /* margin-top: 70px; */
@@ -928,3 +936,6 @@ html, body {
   }
   
 /* END OF SEARCH BAR by MALABAJO */
+
+/* STYLES for the logo */
+
