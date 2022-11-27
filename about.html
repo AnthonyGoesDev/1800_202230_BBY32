@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>BBY32 Project</title>
+    <title>RoadAid by JavaMobs</title>
     <meta name="comp1800 template" content="My 1800 App" />
+    <link rel="icon" href="./images/9RoadAid_Logo.ico"  type="image/x-icon" />
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -36,6 +37,16 @@
       integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
       crossorigin=""
     />
+
+    <!-- Adding map as background used only for profile and about page  -->
+    <style>
+    body {
+      background-image: url('./images/Background_blur.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-size: 100% 100%;
+    }   
+  </style>
   </head>
   <body>
     <!------------------------------>
@@ -72,9 +83,30 @@
     <!-- END of NAV BAR -->
 
     <!-- GREEN BOX for CONTENT -->
+    <br>
+    <img src="./images/RoadAid.gif" alt="Girl in a jacket">
+    <br>
+    
+    <div class="whitebox">
+    <p>JavaMobs is a team of developers, designers, 
+    and students who love to help people out. 
+    From project development to design and marketing, 
+    we want to be there for every step along the way.</p>
+    
+    <p>JavaMobs has one main goal: to create great products that get the job done. 
+    We currently have so much fun working on our app RoadAid! 
+    Our app will make it easier for you to navigate 
+    through road closures in the Metro Vancouver area.</p>
+    
+
+    <p>We don't only report road closures, 
+    but we also send alerts/notifications of those closures
+    to make you aware in case you were planning on taking a certain route. 
+    Plus our app will be accessible on any mobile device 
+    and it's very simple enough for anyone to use!</p>
+    </div>
 
     <!--Map as background.-->
-    <div id="map" style="z-index: 0"></div>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
