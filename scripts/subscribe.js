@@ -140,6 +140,7 @@ function Delete() {
          });
      }
     // Delete();
+<<<<<<< HEAD
 
     // var Subscribe_query = db.collection('Subscribe').where("userID", "==", user.uid);
     // Subscribe_query.get().then(function(querySnapshot) {
@@ -150,3 +151,10 @@ function Delete() {
     // });
     //      });
     //  }
+=======
+    
+    function sendNoti(){
+        window.alert("Notification has been send!");
+    }
+    
+>>>>>>> b2a1117633408150a772a074d253c603949d9680

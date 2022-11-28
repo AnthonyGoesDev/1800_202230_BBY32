@@ -54,7 +54,7 @@
 
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="./styles/search.css">
-  <!-- <link rel="stylesheet" href="./styles/main.css">       -->
+  <link rel="stylesheet" href="./styles/main.css">
 
 </head>
 
@@ -70,6 +70,19 @@
     </div>
   </div>
   <!-- END of NAV BAR -->
+<br>
+
+  <div class="container" style="margin: 15px auto; max-width:170px;">
+    <!-- <div class="container" style="margin-left: auto; margin-right: auto; max-width:60%; margin-top: 15px;"> -->
+    <fieldset id="Notifi" style="background-color:rgb(217, 241, 227); opacity: 87%;">
+      <legend>Notification</legend>
+      <input type="checkbox" id = "Email" value="EMAIL">
+      <label for="html">EMAIL</label><br>
+      <input type="checkbox" id = "SMS" value="SMS">
+      <label for="html">SMS</label><br>
+      <input type="submit" value="Submit" onclick="sendNoti()" >    
+  </fieldset>
+  </div>
 
   <div class="container" style="margin-top: 20px;">
     <!-- Here is container for cards  -->
