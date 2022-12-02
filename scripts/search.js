@@ -42,7 +42,7 @@ function getData(cases) {
     const maxlenth = cases.records.length;
     var status = "";
 
-    document.getElementById("roadSta").src = "./images/good_to_go.jpg";
+    document.getElementById("roadSta").src = "/images/good_to_go.jpg";
 
     for (let i = 0; i < maxlenth; i++) {
         let projectLocation = cases.records[i].fields.location;
@@ -75,7 +75,7 @@ function getData(cases) {
                 pointCoX = x;
                 pointCoY = y;
 
-                document.getElementById("roadSta").src = "./images/road_close.jpg";
+                document.getElementById("roadSta").src = "/images/road_close.jpg";
                 //create multi records for multi matches
                 status = "<h3>Road is/will be closed.</h3><h5>Project Name:</h5>"
                     + projectName + "<h5>Project Date:</h5>" + projectDate;
@@ -98,7 +98,7 @@ function getData(cases) {
 async function pointMap() {
     localStorage.setItem("X", pointCoX);
     localStorage.setItem("Y", pointCoY);
-    window.open("./map.html?coodinator=" + "LS");
+    window.open("/html/map.html?coodinator=" + "LS");
     window.close();
 }
 

@@ -6,7 +6,7 @@ body {
 }
 
 body{
-  background-image:url("../images/Background_blur.jpg");
+  background-image:url("/images/Background_blur.jpg");
   background-position:center ;
 }
 

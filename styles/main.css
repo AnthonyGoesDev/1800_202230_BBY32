@@ -4,8 +4,10 @@ html, body {
     overflow: hidden
 }
 
+
+
 /* logo in the about page */
-img[src="./images/RoadAid.gif"] {
+img[src="/images/RoadAid.gif"] {
   width: 300px;
   margin: 0 auto;
   border-radius: 9%;

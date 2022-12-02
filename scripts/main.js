@@ -4,7 +4,7 @@
 var map = L.map('map').setView([49.26145007393785, -123.07753628444047], 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.bcit.ca"><img src="./images/bcit_logo.jpg"></a>'
+    attribution: '&copy; <a href="http://www.bcit.ca"><img src="/images/bcit_logo.jpg"></a>'
 }).addTo(map);
 
 const jSNpath = "https://opendata.vancouver.ca/api/records/1.0/search/?dataset=road-ahead-current-road-closures&q=&format=json";
@@ -33,7 +33,7 @@ function getData(cases) {
     const maxlenth = cases.records.length;
     //define new icon on map
     var blockIcon = L.icon({
-        iconUrl: './images/block.png',
+        iconUrl: '/images/block.png',
         iconSize: [32, 45],
         popupAnchor: [-3, -36],
     });
@@ -73,7 +73,7 @@ function getData(cases) {
 const urlParamas = new URLSearchParams(window.location.search);
 const strSearchKey = urlParamas.get("coodinator");
 var myIcon = L.icon({
-    iconUrl: './images/the_cone.png',
+    iconUrl: '/images/the_cone.png',
     iconAnchor: [5, 5],
     iconSize: [38, 45],
     popupAnchor: [-3, -76],
@@ -111,7 +111,7 @@ async function search() {
     if (str == "") {
         console.log("get empty input");
     } else {
-        window.open("./searchResult.html?key=" + str2);  //open a new page content the search result
+        window.open("/html/searchResult.html?key=" + str2);  //open a new page content the search result
         window.close(); //close the current page
     }
 }
