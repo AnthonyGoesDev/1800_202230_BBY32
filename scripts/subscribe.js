@@ -107,6 +107,18 @@ function Delete() {
             window.alert("Cannot get user ID");
             console.log("disconnect with user ID");
         }
+
+        const arrayObject = [
+            { name: "name1", value: "value1" },
+            { name: "name2", value: "value2" },
+            { name: "name3", value: "value3" },
+          ];
+          
+          let index = arrayObject.map((item) => item.name).indexOf("name1");
+          if (index > -1) {
+            arrayObject.splice(index, 1);
+            console.log("Result", arrayObject);
+          }
     //     //get into the right collection
     //     var cardStr = "";
         db.collection("Subscribe")
@@ -128,8 +140,21 @@ function Delete() {
          });
      }
     // Delete();
+<<<<<<< HEAD
+
+    // var Subscribe_query = db.collection('Subscribe').where("userID", "==", user.uid);
+    // Subscribe_query.get().then(function(querySnapshot) {
+    //   querySnapshot.forEach(function(doc) {
+    //     doc.ref.delete();
+    //     console.log("delete");
+    //   });
+    // });
+    //      });
+    //  }
+=======
     
     function sendNoti(){
         window.alert("Notification has been send!");
     }
     
+>>>>>>> b2a1117633408150a772a074d253c603949d9680
